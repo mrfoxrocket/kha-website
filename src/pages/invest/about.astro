@@ -1,0 +1,204 @@
+---
+import Features2 from "~/components/widgets/Features2.astro";
+import Features3 from "~/components/widgets/Features3.astro";
+// import Hero from "~/components/widgets/Hero.astro";
+import Hero from "~/components/widgets/Hero3.astro";
+// import Stats from "~/components/widgets/Stats.astro";
+import Steps2 from "~/components/widgets/Steps2.astro";
+import Layout from "~/layouts/PageLayout.astro";
+import { getPermalink } from "~/utils/permalinks";
+
+const metadata = {
+    title: "About us",
+};
+---
+
+<Layout metadata={metadata}>
+    <Hero
+        id="hero"
+        title="Invest in Real Bonds with Kiwi Home Assist"
+        tagline="A Flexible, Secure, and Profitable Path to Property Investment"
+        actions={[{ variant: "primary", text: "Register Now", href: getPermalink("/invest/process") }]}
+    >
+        <Fragment slot="subtitle">
+            The KHA Real Bonds Model is designed to offer investors a unique and flexible way to grow their wealth in
+            the property market. Whether you're a small retail investor, an institutional player, or someone looking to
+            buy your first home, our Real Bonds provide a smart and accessible investment opportunity. Here’s why
+            investing in Real Bonds with KHA could be the best decision you make for your financial future.
+        </Fragment>
+    </Hero>
+
+    <Features3
+        title="Why Invest in Real Bonds?"
+        subtitle="Real Bonds allow you to invest incrementally, starting with as little as $250. You can build your portfolio over time, investing when it suits you and your financial situation. The value of your portfolio will always follow the property market, ensuring your investment grows in line with real estate trends."
+        columns={2}
+        isBeforeContent={true}
+        items={[
+            {
+                title: "Flexible Investments",
+                description:
+                    "With the KHA Model, there’s no need to wait until you’ve saved a large deposit to enter the housing market. You can choose to invest your spare cash whenever it’s convenient, making it easier to build your wealth without the pressure of meeting high entry barriers.",
+                icon: "tabler:template",
+            },
+            {
+                title: "Diversification",
+                description:
+                    "Each Real Bond is linked to a unique mix of underlying properties, giving you a simple way to diversify your investments. This diversification reduces risk by spreading your investment across different properties in various locations, offering a balanced and stable return.",
+                icon: "tabler:template",
+            },
+            {
+                title: "No Tenant-Related Concerns ",
+                description:
+                    "Investing in Real Bonds means you avoid the common hassles of property management, such as dealing with tenants, maintenance issues, or unexpected expenses. This can save you significant time, stress, and money, allowing you to focus on your investment growth.",
+                icon: "tabler:template",
+            },
+            {
+                title: "Easy Entry and Exit",
+                description:
+                    "Real Bonds are traded on a private exchange, offering you greater liquidity and flexibility. You can enter or exit the market at any time and at a price that suits you, making it easier to manage your investments compared to traditional property ownership.",
+                icon: "tabler:template",
+            },
+        ]}
+    />
+
+    <!-- Features3 Widget ************** -->
+
+    <Features3
+        columns={2}
+        isAfterContent={true}
+        items={[
+            {
+                title: "Seamless Exchange for Other Assets",
+                description:
+                    "Real Bonds can be a powerful tool for saving toward other financial goals. Since property values often grow faster than many consumer products, your Real Bonds investment can help you save more quickly for big purchases like a car, a holiday, or other significant expenses. Selling your bonds on the dedicated exchange frees up cash without dramatically altering the remainder of your portfolio.",
+                icon: "tabler:template",
+            },
+            {
+                title: "Higher Cumulative Gains with Minimal Expenses ",
+                description:
+                    "The property market is known for offering high and stable returns on investment. With Real Bonds, you can enjoy these benefits without the usual expenses associated with property ownership, such as repairs, maintenance, finance costs, rates, insurance, and management fees.",
+                icon: "tabler:template",
+            },
+            {
+                title: "Low-Risk Investment ",
+                description:
+                    "Real estate is generally considered a safer investment compared to other asset classes. The diversified nature of the underlying property portfolio in Real Bonds further mitigates risk, spreading it across multiple properties in different locations.",
+                icon: "tabler:template",
+            },
+            {
+                title: "Accessible Entry ",
+                description:
+                    "From just $250 Real Bonds provide an affordable entry point into the property market for investors of any size. Start building your future wealth today with a modest initial investment.",
+                icon: "tabler:template",
+            },
+        ]}
+        image={{
+            src: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80",
+            alt: "Colorful Image",
+        }}
+    />
+
+    <!-- Steps2 Widget ****************** -->
+
+    <Steps2
+        title="Our values"
+        subtitle="Maecenas eu tellus eget est scelerisque lacinia et a diam. Aliquam velit lorem, vehicula id fermentum et, rhoncus et purus. Nulla facilisi. Vestibulum malesuada lacus."
+        items={[
+            {
+                title: "Customer-centric approach",
+                description:
+                    "Donec id nibh neque. Quisque et fermentum tortor. Fusce vitae dolor a mauris dignissim commodo. Ut eleifend luctus condimentum.",
+            },
+            {
+                title: "Constant Improvement",
+                description:
+                    "Phasellus laoreet fermentum venenatis. Vivamus dapibus pulvinar arcu eget mattis. Fusce eget mauris leo.",
+            },
+            {
+                title: "Ethical Practices",
+                description:
+                    "Vestibulum imperdiet libero et lectus molestie, et maximus augue porta. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
+            },
+        ]}
+    />
+
+    <!-- Steps2 Widget ****************** -->
+
+    <Steps2
+        title="Achievements"
+        subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, quam nec venenatis lobortis, mi risus tempus nulla, sed porttitor est nibh at nulla."
+        isReversed={true}
+        callToAction={{
+            text: "See more",
+            href: "/",
+        }}
+        items={[
+            {
+                title: "Global reach",
+                description:
+                    "Nam malesuada urna in enim imperdiet tincidunt. Phasellus non tincidunt nisi, at elementum mi.",
+                icon: "tabler:globe",
+            },
+            {
+                title: "Positive customer feedback and reviews",
+                description:
+                    "Cras semper nulla leo, eget laoreet erat cursus sed. Praesent faucibus massa in purus iaculis dictum.",
+                icon: "tabler:message-star",
+            },
+            {
+                title: "Awards and recognition as industry experts",
+                description:
+                    "Phasellus lacinia cursus velit, eu malesuada magna pretium eu. Etiam aliquet tellus purus, blandit lobortis ex rhoncus vitae.",
+                icon: "tabler:award",
+            },
+        ]}
+    />
+
+    <!-- Features2 Widget ************** -->
+
+    <Features2
+        title="Our locations"
+        tagline="Find us"
+        columns={4}
+        items={[
+            {
+                title: "EE.UU",
+                description: "1234 Lorem Ipsum St, 12345, Miami",
+            },
+            {
+                title: "Spain",
+                description: "5678 Lorem Ipsum St, 56789, Madrid",
+            },
+            {
+                title: "Australia",
+                description: "9012 Lorem Ipsum St, 90123, Sydney",
+            },
+            {
+                title: "Brazil",
+                description: "3456 Lorem Ipsum St, 34567, São Paulo",
+            },
+        ]}
+    />
+
+    <!-- Features2 Widget ************** -->
+
+    <Features2
+        title="Technical Support"
+        tagline="Contact us"
+        columns={2}
+        items={[
+            {
+                title: "Chat with us",
+                description:
+                    "Integer luctus laoreet libero, auctor varius purus rutrum sit amet. Ut nec molestie nisi, quis eleifend mi.",
+                icon: "tabler:messages",
+            },
+            {
+                title: "Call us",
+                description:
+                    "Mauris faucibus finibus orci, in posuere elit viverra non. In hac habitasse platea dictumst. Cras lobortis metus a hendrerit congue.",
+                icon: "tabler:headset",
+            },
+        ]}
+    />
+</Layout>

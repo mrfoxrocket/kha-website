@@ -60,7 +60,9 @@ const {
         }
     </div>
 
-    {icon && <Icon name={icon} size={500} class={"w-full"} />}
+    <div class="w-full flex justify-center">
+        {icon && <Icon name={icon} size={"auto"} class={"max-w-3xl "} />}
+    </div>
 
     <ItemGrid
         items={items}

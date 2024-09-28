@@ -1,0 +1,199 @@
+---
+import Features from "~/components/widgets/Features.astro";
+import Features2 from "~/components/widgets/Features2.astro";
+import Features3 from "~/components/widgets/Features3.astro";
+import Features4 from "~/components/widgets/Features4.astro";
+import Hero2 from "~/components/widgets/Hero2.astro";
+import Hero from "~/components/widgets/Hero3.astro";
+import Steps from "~/components/widgets/Steps.astro";
+import Layout from "~/layouts/PageLayout.astro";
+import { getPermalink } from "~/utils/permalinks";
+
+const metadata = {
+    title: "About us",
+};
+---
+
+<Layout metadata={metadata}>
+    <Hero
+        id="hero"
+        title="Invest in Real Bonds with Kiwi Home Assist"
+        tagline="A Flexible, Secure, and Profitable Path to Property Investment"
+        actions={[{ variant: "primary", text: "Register Now", href: getPermalink("/invest/process") }]}
+    >
+        <Fragment slot="subtitle">
+            The KHA Real Bonds Model is designed to offer investors a unique and flexible way to grow their wealth in
+            the property market. Whether you're a small retail investor, an institutional player, or someone looking to
+            buy your first home, our Real Bonds provide a smart and accessible investment opportunity. Here’s why
+            investing in Real Bonds with KHA could be the best decision you make for your financial future.
+        </Fragment>
+    </Hero>
+
+    <Hero2
+        image={{
+            src: "/src/assets/icons/illustrations/invest.svg",
+            alt: "AstroWind Hero Image",
+        }}
+    >
+        <Fragment slot="title">
+            Why Invest in <span class="text-accent dark:text-white highlight">Real</span> Bonds<br />
+        </Fragment>
+
+        <Fragment slot="subtitle">
+            Real Bonds allow you to invest incrementally, starting with as little as $250. You can build your portfolio
+            over time, investing when it suits you and your financial situation. The value of your portfolio will always
+            follow the property market, ensuring your investment grows in line with real estate trends.
+        </Fragment>
+    </Hero2>
+
+    <Features3
+        title="Security"
+        subtitle="Your investment is safeguarded by property-backed assets and secured by free equity, reducing risk. Even higher-return opportunities maintain security through controlled risk measures."
+        icon="illustrations/security"
+        columns={2}
+        isBeforeContent={true}
+        items={[
+            {
+                title: "Low-Risk Investment",
+                description:
+                    "Real estate is generally considered a safer investment compared to other asset classes. The diversified nature of the underlying property portfolio in Real Bonds further mitigates risk, spreading it across multiple properties in different locations.",
+                icon: "tabler:template",
+            },
+            {
+                title: "Secured by Free Equity",
+                description:
+                    "Your investment in Real Bonds is secured by free equity. This added layer of security ensures that your investment is protected against potential losses.",
+                icon: "tabler:template",
+            },
+            {
+                title: "Opportunities for Higher Gains with Controlled Risk",
+                description:
+                    "For those willing to explore higher-risk opportunities, KHA offers bonds secured over properties with a higher portion of free equity combined with a smaller portion of secured third-party lending. These bonds are bundled separately, providing higher gain opportunities while still offering a great degree of security.",
+                icon: "tabler:template",
+            },
+            {
+                title: "A Safer Alternative to High-Risk, High-Rate Loans",
+                description:
+                    "For long-term investors, KHA Real Bonds offer a more stable and inflation-proof option compared to high-interest loans. While Real Bonds may not pay regular cash dividends like high-yield deposits, they offer the potential for significant long-term capital gains.",
+                icon: "tabler:template",
+            },
+        ]}
+    />
+
+    <Features2
+        title="Liquidity"
+        subtitle="Enjoy the flexibility to enter and exit the market whenever it suits you. Real Bonds offer high liquidity through private and international exchanges, allowing seamless access to your funds."
+        items={[
+            {
+                title: "Accessible and Flexible Market Entry",
+                description:
+                    "With a starting investment as low as $250, Real Bonds offer an affordable entry point for investors of any size. Traded on a private exchange, they provide the liquidity and flexibility to enter or exit the market at any time, making investment management easier than traditional property ownership.",
+                icon: "flat-color-icons:bullish",
+            },
+            {
+                title: "Seamless Exchange for Other Assets ",
+                description:
+                    "Real Bonds can be a powerful tool for saving toward other financial goals. Since property values often grow faster than many consumer products, your Real Bonds investment can help you save more quickly for big purchases like a car, a holiday, or other significant expenses. Selling your bonds on the dedicated exchange frees up cash without dramatically altering the remainder of your portfolio.",
+                icon: "flat-color-icons:workflow",
+            },
+            {
+                title: "Trade Easily on an International Exchange",
+                description:
+                    "Real Bonds can be bought and sold on a dedicated international trading exchange. This feature provides higher liquidity and flexibility, allowing you to choose your entry or exit time based on your financial goals and market conditions.",
+                icon: "flat-color-icons:globe",
+            },
+        ]}
+    >
+        <Fragment slot="bg">
+            <div class="absolute inset-0 bg-accentbackground"></div>
+        </Fragment>
+    </Features2>
+
+    <Features
+        id="features"
+        title="Ease of Management"
+        subtitle="Invest with minimal effort, free from the burdens of property management and high expenses. Diversify easily and grow your portfolio without the hassle of tenants or maintenance."
+        columns={2}
+        items={[
+            {
+                title: "Flexible Investment Timing",
+                description:
+                    "With the KHA Model, there’s no need to wait until you’ve saved a large deposit to enter the housing market. You can choose to invest your spare cash whenever it’s convenient, making it easier to build your wealth without the pressure of meeting high entry barriers.",
+                icon: "tabler:plug-connected",
+            },
+            {
+                title: "No Tenant-Related Concerns",
+                description:
+                    "Investing in Real Bonds means you avoid the common hassles of property management, such as dealing with tenants, maintenance issues, or unexpected expenses. This can save you significant time, stress, and money, allowing you to focus on your investment growth.",
+                icon: "tabler:plug-connected",
+            },
+            {
+                title: "Higher Cumulative Gains with Minimal Expenses",
+                description:
+                    "The property market is known for offering high and stable returns on investment. With Real Bonds, you can enjoy these benefits without the usual expenses associated with property ownership, such as repairs, maintenance, finance costs, rates, insurance, and management fees.",
+                icon: "tabler:plug-connected",
+            },
+            {
+                title: "Stay in the Same Market",
+                description:
+                    "As your portfolio grows with the housing market, you can eventually exchange your Real Bonds for an actual property. This allows you to save gradually for your future home or investment property while remaining in the same market, ensuring you don't lose out on property value appreciation.",
+                icon: "tabler:plug-connected",
+            },
+        ]}
+    />
+
+    <Steps
+        id="benefit"
+        title="Who Can Benefit from Investing in Real Bonds?"
+        items={[
+            {
+                title: "First Home Buyers",
+                description: `Save gradually for your first home while benefiting from property market growth.`,
+                icon: "tabler:home",
+            },
+            {
+                title: "Small Retail Investors",
+                description: `Begin building your wealth with a low initial investment.`,
+                icon: "tabler:building-store",
+            },
+
+            {
+                title: "Property Investors",
+                description: `Spread your risk across multiple properties and locations.`,
+                icon: "tabler:briefcase",
+            },
+            {
+                title: "Institutional Investors",
+                description: `Diversify and secure your investment portfolio with a stable asset class.`,
+                icon: "tabler:building",
+            },
+        ]}
+        classes={{ container: "max-w-3xl" }}
+    />
+
+    <Features4
+        title="Invest in Real Bonds with KHA"
+        tagline="Start Here"
+        subtitle="With KHA Real Bonds, you can take control of your financial future by investing in the property market at your own pace. Whether you're looking to diversify your investments, save for a big purchase, or secure a stable, long-term return, Real Bonds offer the flexibility, security, and growth potential you need. Join us and start building your wealth in the property market today."
+        columns={2}
+        items={[
+            {
+                title: "Process",
+                description: "Click here to view our KHA Investor process and learn more about our investment options.",
+                icon: "tabler:progress-check",
+                callToAction: {
+                    href: getPermalink("/invest/process"),
+                },
+            },
+            {
+                title: "Register",
+                description:
+                    "Want to start investing in Real Bonds? Register now and start building your wealth in the property market today.",
+                icon: "tabler:login",
+                callToAction: {
+                    href: getPermalink("/invest/register"),
+                },
+            },
+        ]}
+    />
+</Layout>

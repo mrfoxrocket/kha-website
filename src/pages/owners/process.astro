@@ -1,0 +1,47 @@
+---
+import Layout from "~/layouts/PageLayout.astro";
+import OwnerProcess from "~/components/ui/OwnerProcess";
+import Hero from "~/components/widgets/Hero2.astro";
+import { getPermalink } from "~/utils/permalinks";
+import CallToAction from "~/components/widgets/CallToAction.astro";
+
+const metadata = {
+    title: "Investment Process",
+};
+---
+
+<Layout metadata={metadata}>
+    <Hero
+        image={{
+            src: "/src/assets/icons/illustrations/process.svg",
+            alt: "Process Image",
+        }}
+        id="hero"
+        title="The <span class='text-accent highlight'>Kiwi Home Assist</span> Equity Release Process "
+        tagline="A Simple, Secure Path to Unlocking Your Home’s Value"
+        actions={[{ variant: "primary", text: "Register Now", href: getPermalink("/owners/register") }]}
+    >
+        <Fragment slot="subtitle"
+            >Our equity release process is designed to be straightforward and transparent, ensuring that you fully
+            understand each step and feel confident in your decisions. Here’s how it works.
+        </Fragment>
+    </Hero>
+    <OwnerProcess client:load />
+    <CallToAction
+        actions={[
+            {
+                variant: "primary",
+                target: "_blank",
+                text: "Register Now",
+                href: "invest/register",
+            },
+        ]}
+    >
+        <Fragment slot="title">Unlock the Value of Your Home</Fragment>
+
+        <Fragment slot="subtitle">
+            Start the process of releasing equity from your property. Enjoy financial flexibility while retaining
+            ownership and ensuring a secure future for you and your family.
+        </Fragment>
+    </CallToAction>
+</Layout>

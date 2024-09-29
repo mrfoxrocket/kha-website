@@ -17,7 +17,7 @@ const metadata = {
 <Layout metadata={metadata}>
     <Hero
         id="hero"
-        title="Invest in Real Bonds with Kiwi Home Assist"
+        title="Invest in Real Bonds with <span class='text-accent highlight'>Kiwi Home Assist</span> "
         tagline="A Flexible, Secure, and Profitable Path to Property Investment"
         actions={[{ variant: "primary", text: "Register Now", href: getPermalink("/invest/process") }]}
     >
@@ -36,19 +36,21 @@ const metadata = {
         }}
     >
         <Fragment slot="title">
-            Why Invest in <span class="text-accent dark:text-white highlight">Real</span> Bonds<br />
+            Why Invest in <span class="text-accent highlight">Real</span> Bonds<br />
         </Fragment>
 
         <Fragment slot="subtitle">
-            Real Bonds allow you to invest incrementally, starting with as little as $250. You can build your portfolio
-            over time, investing when it suits you and your financial situation. The value of your portfolio will always
-            follow the property market, ensuring your investment grows in line with real estate trends.
+            Real Bonds allow you to invest incrementally, starting with as little as <span
+                class="text-accent font-semibold highlight">$250</span
+            >. You can build your portfolio over time, investing when it suits you and your financial situation. The
+            value of your portfolio will always follow the property market, ensuring your investment grows in line with
+            real estate trends.
         </Fragment>
     </Hero2>
 
     <Features3
         title="Security"
-        subtitle="Your investment is safeguarded by property-backed assets and secured by free equity, reducing risk. Even higher-return opportunities maintain security through controlled risk measures."
+        subtitle="Your investment is safeguarded by property-backed assets and secured by free equity, reducing risk. Opportunities with higher potential returns are also managed with controlled risk measures to ensure your security remains intact."
         icon="illustrations/security"
         columns={2}
         isBeforeContent={true}
@@ -82,7 +84,7 @@ const metadata = {
 
     <Features2
         title="Liquidity"
-        subtitle="Enjoy the flexibility to enter and exit the market whenever it suits you. Real Bonds offer high liquidity through private and international exchanges, allowing seamless access to your funds."
+        subtitle="Enjoy the flexibility to enter and exit the market whenever it suits you. Real Bonds offer high liquidity through private international exchanges, allowing seamless access to your funds."
         items={[
             {
                 title: "Accessible and Flexible Market Entry",
@@ -172,7 +174,7 @@ const metadata = {
     />
 
     <Features4
-        title="Invest in Real Bonds with KHA"
+        title="Invest in Real Bonds with Us"
         tagline="Start Here"
         subtitle="With KHA Real Bonds, you can take control of your financial future by investing in the property market at your own pace. Whether you're looking to diversify your investments, save for a big purchase, or secure a stable, long-term return, Real Bonds offer the flexibility, security, and growth potential you need. Join us and start building your wealth in the property market today."
         columns={2}

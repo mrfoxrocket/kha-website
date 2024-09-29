@@ -1,0 +1,48 @@
+---
+import Layout from "~/layouts/PageLayout.astro";
+import InvestorProcess from "~/components/ui/InvestorProcess";
+import Hero from "~/components/widgets/Hero3.astro";
+import { getPermalink } from "~/utils/permalinks";
+import CallToAction from "~/components/widgets/CallToAction.astro";
+
+const metadata = {
+    title: "Investment Process",
+};
+---
+
+<Layout metadata={metadata}>
+    <Hero
+        image={{
+            src: "/src/assets/icons/illustrations/process2.svg",
+            alt: "Process Image",
+        }}
+        id="hero"
+        title="The <span class='text-accent highlight'>Kiwi Home Assist</span> Investment Process "
+        tagline="Seamless, Personalized, and Profitable"
+        actions={[{ variant: "primary", text: "Register Now", href: getPermalink("/invest/register") }]}
+    >
+        <Fragment slot="subtitle"
+            >Investing in Real Bonds with KHA is designed to be straightforward, offering you a tailored experience from
+            start to finish. Whether you’re a seasoned investor or just starting out, our process ensures that you have
+            all the tools and information needed to make informed decisions and grow your wealth. Here’s how it works:
+        </Fragment>
+    </Hero>
+    <InvestorProcess client:load />
+    <CallToAction
+        actions={[
+            {
+                variant: "primary",
+                target: "_blank",
+                text: "Register Now",
+                href: "/invest/register",
+            },
+        ]}
+    >
+        <Fragment slot="title">Start Building Your Wealth Today</Fragment>
+
+        <Fragment slot="subtitle">
+            Secure your financial future by registering as an investor with Kiwi Home Assist. Join a platform that
+            offers property-backed investments with high returns and minimal risk.
+        </Fragment>
+    </CallToAction>
+</Layout>

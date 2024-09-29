@@ -12,6 +12,7 @@ const {
     content = await Astro.slots.render("content"),
     actions = await Astro.slots.render("actions"),
     image = await Astro.slots.render("image"),
+    isReversed = false,
 
     id,
     bg = await Astro.slots.render("bg"),
@@ -26,14 +27,16 @@ const {
     </div>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6">
         <div class="pt-0 pointer-events-none"></div>
-        <div class="py-12 md:py-20 lg:py-0 lg:flex lg:items-center lg:gap-8">
+        <div
+            class:list={[
+                "py-12 md:py-20 lg:py-0 lg:flex lg:items-center lg:gap-8",
+                { "lg:flex-row-reverse": isReversed },
+            ]}
+        >
             <div class="basis-1/2 text-center lg:text-left pb-10 md:pb-16 mx-auto">
                 {
                     tagline && (
-                        <p
-                            class="text-base text-secondary dark:text-blue-200 font-bold tracking-wide uppercase"
-                            set:html={tagline}
-                        />
+                        <p class="text-base text-secondary  font-bold tracking-wide uppercase" set:html={tagline} />
                     )
                 }
                 {

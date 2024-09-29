@@ -1,0 +1,230 @@
+---
+import Features from "~/components/widgets/Features.astro";
+import Features2 from "~/components/widgets/Features2.astro";
+import Features3 from "~/components/widgets/Features3.astro";
+import Features4 from "~/components/widgets/Features4.astro";
+import Hero2 from "~/components/widgets/Hero2.astro";
+import Hero from "~/components/widgets/Hero3.astro";
+import Steps from "~/components/widgets/Steps.astro";
+import Steps2 from "~/components/widgets/Steps2.astro";
+import Layout from "~/layouts/PageLayout.astro";
+import { getPermalink } from "~/utils/permalinks";
+
+const metadata = {
+    title: "About us",
+};
+---
+
+<Layout metadata={metadata}>
+    <Hero
+        id="hero"
+        title="Equity Release with Kiwi Home Assist"
+        tagline="A Secure, Transparent Way to Unlock Your Property's Potential"
+        actions={[{ variant: "primary", text: "Register Now", href: getPermalink("/owners/process") }]}
+    >
+        <Fragment slot="subtitle">
+            Are you looking to release equity from your property without the stress of traditional methods? Unlike
+            traditional equity release schemes that can erode your property’s value and share of remaining equity, our
+            model offers a fixed, transparent deal that ensures you retain control over your equity and its benefits.
+            Our solution allows you to sell stakes in your home and receive immediate funding, all while maintaining a
+            fixed portion of your home ownership that won’t change overtime.
+        </Fragment>
+    </Hero>
+
+    <Steps2
+        title="Here’s How It Works:"
+        callToAction={{
+            text: "Learn More",
+            href: "/owners/process",
+        }}
+        subtitle="Our process is simple and fully transparent. Choose how much equity you’d like to release, review a clear offer with no hidden fees, and receive your funds quickly—without the complications or ongoing costs associated with traditional loan models."
+        items={[
+            {
+                title: "Sell a Stake in Your Property",
+                description:
+                    "Choose how much equity you want to release. Our team will assess your home and provide a fair, transparent offer.",
+            },
+            {
+                title: "Recieve Funding",
+                description:
+                    "Access the cash you need quickly and easily, without hidden fees or complicated processes.",
+            },
+            {
+                title: "Retain Ownership",
+                description:
+                    "The equity share you don’t sell remains the same, there is no continued equity leak common to loan based models.",
+            },
+            {
+                title: "Enjoy Your Home",
+                description: "You continue to live in and enjoy your home while having access to the funds you need..",
+            },
+        ]}
+    />
+
+    <Hero2
+        tagline="Avoid the Pitfalls of Loan-Based Equity Release Models"
+        image={{
+            src: "/src/assets/icons/illustrations/house.svg",
+            alt: "AstroWind Hero Image",
+        }}
+    >
+        <Fragment slot="title">
+            Protect Your <span class="text-accent highlight">Equity</span> from Risk and Loss<br />
+        </Fragment>
+
+        <Fragment slot="subtitle">
+            By choosing this approach, you avoid the risks and potential losses tied to traditional borrowing or
+            loan-based equity release models. In such models, accumulating interest and fees can steadily erode your
+            home’s value, leading to unpredictable equity depletion over time. <br /><br />With fluctuating interest
+            rates and complex repayment terms, homeowners may end up owing more than they initially borrowed, wiping out
+            a significant portion of their equity and leaving little value in their property. Our model ensures your
+            remaining equity is protected from these risks, allowing you to maintain control and preserve long-term
+            value.
+        </Fragment>
+    </Hero2>
+
+    <Features3
+        title="What Can You Do with Released Cash?"
+        subtitle="Discover the flexibility of using your released cash to fund your dreams—whether it's for retirement, home improvements, travel, or securing your family’s future."
+        icon="illustrations/money"
+        columns={3}
+        isBeforeContent={true}
+        items={[
+            {
+                title: "Travel",
+                description:
+                    "The value of your home typically outpaces inflation, allowing you to use your equity to fund your dream vacations. Whether it's a luxury cruise or exploring new destinations, your equity release can make it happen.",
+                icon: "tabler:plane",
+            },
+            {
+                title: "Renovation",
+                description:
+                    "Home improvements can be expensive, but with the cash from your equity release, you can upgrade your home without the financial strain. Enjoy a refreshed living space or make essential repairs with ease.",
+                icon: "tabler:hammer",
+            },
+            {
+                title: "Health Care",
+                description:
+                    "Your health is your most valuable asset. Use the released equity to invest in your well-being, whether that means covering medical expenses, joining a fitness program, or simply ensuring you have the best care available.",
+                icon: "tabler:clipboard-heart",
+            },
+            {
+                title: "Alternative to Residential Home Care",
+                description:
+                    "You can gradually release your equity to cover the cost of a professional home-based care giver. Enjoy the comfort of your home while being well looked after.",
+                icon: "tabler:old",
+            },
+            {
+                title: "Family Support",
+                description:
+                    "Supporting your family financially can take many forms—whether it’s providing a deposit for their first home, covering university fees, supporting a new business venture, or giving memorable gifts to grandchildren. The cash from your equity release offers you the flexibility to help where it’s needed most.",
+                icon: "tabler:baby-carriage",
+            },
+            {
+                title: "Finance Your Projects",
+                description:
+                    "Have a personal or business project that needs funding? Your equity release can provide the necessary capital. From property developments to entrepreneurial ventures, you can finance your ambitions without needing to dip into your savings.",
+                icon: "tabler:bulb",
+            },
+        ]}
+    />
+
+    <Hero2
+        tagline="No Hidden Fees, No Interest Rates — Know Exactly What to Expect"
+        isReversed
+        image={{
+            src: "/src/assets/icons/illustrations/transparency.svg",
+            alt: "AstroWind Hero Image",
+        }}
+    >
+        <Fragment slot="title"> Complete Transparency and Certainty </Fragment>
+
+        <Fragment slot="subtitle">
+            The KHA Model offers complete transparency, allowing you to access the equity in your home without the
+            uncertainty and hidden costs of traditional equity release methods. There are no hidden fees or fluctuating
+            interest rates to worry about—just a clear, straightforward process. <br /><br />You’ll know exactly what
+            your financial position will be at the time of exit, giving you the peace of mind that you can use your
+            released equity freely, without compromising your family's inheritance. With the certainty of a well-defined
+            outcome, you can enjoy your equity guilt-free, confident in what you’ll leave behind.
+        </Fragment>
+    </Hero2>
+
+    <Features2
+        title="What You Get in Return for Your Stake:"
+        items={[
+            {
+                title: "Fixed Equity Deal",
+                description:
+                    "With our Model, the equity stake you sell is fixed from the outset. This means you avoid the unexpected equity loss common in other equity release models, where accumulated interest on loans or hidden fees can drastically reduce your remaining equity. Traditional models often take a disproportionately large stake upfront or erode your equity over time, leaving you with far less than anticipated. With KHA, you know exactly what you're giving up and what you’ll have left, offering you complete transparency and security.",
+                icon: "flat-color-icons:debt",
+            },
+            {
+                title: "Future Planning and Guilt-Free Benefits",
+                description:
+                    "With Kiwi Home Assist, succession planning becomes simple and transparent. You can ensure your family will inherit a clear, fair portion of your property, eliminating the stress of unexpected financial burdens for your loved ones. At the same time, you can enjoy the wealth you've worked hard to build, knowing exactly what value you’ll leave behind—allowing you to use your equity guilt-free and with peace of mind.",
+                icon: "flat-color-icons:calendar",
+            },
+            {
+                title: "Options for Family Support",
+                description:
+                    "Our model offers flexible options to assist your family financially. Whether it’s helping your children with a deposit for their first home or supporting other financial goals, the cash released stays within the family. When your family uses the released equity as a deposit for their home, they effectively spread the value across two properties. Over time, family members can purchase Real Bonds to gradually rebuild your equity stake, ensuring that the wealth you’ve built can continue to benefit future generations.",
+                icon: "flat-color-icons:like",
+            },
+        ]}
+    >
+        <Fragment slot="bg">
+            <div class="absolute inset-0 bg-accentbackground"></div>
+        </Fragment>
+    </Features2>
+
+    <Steps
+        id="benefit"
+        title="Who Can Benefit from Kiwi Home Assist Equity Release?"
+        items={[
+            {
+                title: "Homeowners with Significant Free Equity",
+                description: `Access the untapped value of your property.`,
+                icon: "tabler:home",
+            },
+            {
+                title: "Property Developers",
+                description: `Use your existing properties to fund new developments.`,
+                icon: "tabler:crane",
+            },
+            {
+                title: "Investment Property Owners",
+                description: `Leverage your current portfolio to invest in additional properties.`,
+                icon: "tabler:building",
+            },
+        ]}
+        classes={{ container: "max-w-3xl" }}
+    />
+
+    <Features4
+        title="Maximize Your Equity Now"
+        tagline="Start Here"
+        subtitle="With Kiwi Home Assist, you have a secure, transparent, and flexible way to release equity from your property. Whether you’re planning for the future, supporting your family, or simply enjoying the fruits of your labor, our model ensures you retain control over your financial destiny."
+        columns={2}
+        items={[
+            {
+                title: "Process",
+                description:
+                    "Click here to view our Homeowner process and discover how to access your property's equity.",
+                icon: "tabler:progress-check",
+                callToAction: {
+                    href: getPermalink("/owners/process"),
+                },
+            },
+            {
+                title: "Register",
+                description:
+                    "Ready to unlock the value of your home? Register now and take the first step towards accessing your equity today.",
+
+                icon: "tabler:login",
+                callToAction: {
+                    href: getPermalink("/owners/register"),
+                },
+            },
+        ]}
+    />
+</Layout>

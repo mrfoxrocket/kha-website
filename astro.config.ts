@@ -73,7 +73,7 @@ export default defineConfig({
 
     // vite: {
     //     ssr: {
-    //         noExternal: ["@fontsource-variable/inter"],
+    //         noExternal: ["react-hook-form"],
     //     },
     //     resolve: {
     //         alias: {

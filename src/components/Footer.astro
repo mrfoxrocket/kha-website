@@ -1,0 +1,74 @@
+---
+import { SITE } from "astrowind:config";
+import { getHomePermalink } from "~/utils/permalinks";
+
+interface Link {
+    text?: string;
+    href?: string;
+    ariaLabel?: string;
+    icon?: string;
+}
+
+interface Links {
+    title?: string;
+    links: Array<Link>;
+}
+
+export interface Props {
+    links: Array<Links>;
+    secondaryLinks: Array<Link>;
+}
+
+const { secondaryLinks = [], links = [] } = Astro.props;
+---
+
+<footer class="border-t border-gray-200 dark:border-slate-800 grid md:grid-cols-3 md:grid-rows-2 px-6 pt-6 gap-6">
+    <div class="flex flex-col items-center md:items-start">
+        <a class="inline-block font-bold text-xl mb-2" href={getHomePermalink()}>
+            {SITE?.name}
+        </a>
+        <div class="text-sm text-muted flex gap-1">
+            {
+                secondaryLinks.map(({ text, href }, index) => (
+                    <>
+                        {index !== 0 ? " · " : ""}
+                        <a
+                            class="text-muted hover:underline transition duration-150 ease-in-out"
+                            href={href}
+                            set:html={text}
+                        />
+                    </>
+                ))
+            }
+        </div>
+    </div>
+    {
+        links.map(({ title, links }) => (
+            <div class=" items-center  flex flex-col ">
+                <div class="text-muted font-medium mb-2">{title}</div>
+                {links && Array.isArray(links) && links.length > 0 && (
+                    <ul class="text-sm flex gap-2">
+                        {links.map(({ text, href, ariaLabel }) => (
+                            <li class="mb-2">
+                                <a
+                                    class="text-muted hover:underline  transition duration-150 ease-in-out"
+                                    href={href}
+                                    aria-label={ariaLabel}
+                                >
+                                    <Fragment set:html={text} />
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                )}
+            </div>
+        ))
+    }
+    <div class="text-sm dark:text-muted justify-center items-center flex md:row-start-2 md:col-span-full">
+        Made by&nbsp;
+        <a class="hover:text-primary transition-all ease-in-out underline" href="https://lapmedia.agency/">
+            LAP Media
+        </a>
+        &nbsp;· {new Date().getFullYear()} All rights reserved.
+    </div>
+</footer>; ---

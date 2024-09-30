@@ -1,0 +1,29 @@
+---
+import InvestorForm from "~/components/Forms/InvestorForm";
+import Hero from "~/components/widgets/Hero/Hero4.astro";
+import Layout from "~/layouts/PageLayout.astro";
+
+const metadata = {
+    title: "Register as Owner",
+};
+---
+
+<Layout metadata={metadata}>
+    <div class="grid md:grid-flow-col gap-8 p-10">
+        <Hero
+            image={{
+                src: "/src/assets/icons/illustrations/signup.svg",
+                alt: "Register Image",
+            }}
+            id="hero"
+            title="Register as an Investor with <span class='text-accent highlight'>Kiwi Home Assist</span>"
+            tagline="Tagline."
+        >
+            <Fragment slot="subtitle">
+                Register now to be the first to know when we launch! By registering your interest, you'll receive
+                exclusive updates, early access to investment opportunities, and insider insights into our strategies.
+            </Fragment>
+        </Hero>
+        <InvestorForm client:load />
+    </div>
+</Layout>

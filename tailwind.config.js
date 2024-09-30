@@ -8,6 +8,7 @@ module.exports = {
             animation: {
                 wiggle: "wiggle 2s ease-in-out infinite",
                 slowspin: "spin 5s linear infinite",
+                slowbounce: "bounce 3s linear infinite",
             },
             keyframes: {
                 wiggle: {

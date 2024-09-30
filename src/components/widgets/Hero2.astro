@@ -3,6 +3,7 @@ import Image from "~/components/common/Image.astro";
 import Button from "~/components/ui/Button.astro";
 
 import type { Hero as Props } from "~/types";
+import { cn } from "~/utils/utils";
 
 const {
     title = await Astro.slots.render("title"),
@@ -14,12 +15,13 @@ const {
     image = await Astro.slots.render("image"),
     isReversed = false,
 
+    sectionClass,
     id,
     bg = await Astro.slots.render("bg"),
 } = Astro.props;
 ---
 
-<section class="relative not-prose mt-20" {...id ? { id } : {}}>
+<section class={cn("relative not-prose mt-20", sectionClass)} {...id ? { id } : {}}>
     <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
         <slot name="bg">
             {bg ? <Fragment set:html={bg} /> : null}

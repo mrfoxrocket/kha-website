@@ -1,0 +1,70 @@
+---
+import Features from "~/components/widgets/Features.astro";
+import Features2 from "~/components/widgets/Features2.astro";
+import Features3 from "~/components/widgets/Features3.astro";
+import Features4 from "~/components/widgets/Features4.astro";
+import Hero2 from "~/components/widgets/Hero2.astro";
+import Hero from "~/components/widgets/Hero3.astro";
+import Steps from "~/components/widgets/Steps.astro";
+import Steps2 from "~/components/widgets/Steps2.astro";
+import Layout from "~/layouts/PageLayout.astro";
+import { getPermalink } from "~/utils/permalinks";
+
+const metadata = {
+    title: "About us",
+};
+---
+
+<Layout metadata={metadata}>
+    <Hero
+        id="hero"
+        title="Register with <span class='text-accent highlight'>Kiwi Home Assist</span>"
+        tagline="Choose your path to financial security."
+    >
+        <Fragment slot="subtitle">
+            Ready to take control of your financial future? Whether you’re a homeowner looking to release equity or an
+            investor seeking property-backed returns, our registration process is simple and tailored to your needs.
+            Choose your path below and start your journey with Kiwi Home Assist today.
+        </Fragment>
+    </Hero>
+
+    <Hero2
+        sectionClass="mt-0"
+        tagline="Turn your home equity into financial freedom"
+        image={{
+            src: "/src/assets/icons/illustrations/cabin.svg",
+            alt: "AstroWind Hero Image",
+        }}
+        actions={[{ variant: "primary", text: "Register as Owner", href: getPermalink("/register/owner") }]}
+    >
+        <Fragment slot="title">
+            For <span class="text-accent highlight">Home Owners</span>
+        </Fragment>
+
+        <Fragment slot="subtitle">
+            Unlock the value in your home without the stress or complexity of traditional equity release models. With
+            Kiwi Home Assist, you maintain ownership of your property while accessing the funds you need. Whether it’s
+            for renovations, retirement, or family support, our flexible and transparent process lets you release equity
+            on your terms, while preserving your financial legacy.
+        </Fragment>
+    </Hero2>
+
+    <Hero2
+        tagline="Property-backed Investments for stable, long-term growth"
+        actions={[{ variant: "primary", text: "Register as Investor", href: getPermalink("/register/investor") }]}
+        isReversed
+        image={{
+            src: "/src/assets/icons/illustrations/investor.svg",
+            alt: "AstroWind Hero Image",
+        }}
+    >
+        <Fragment slot="title"> For <span class="text-accent highlight">Investors</span> </Fragment>
+
+        <Fragment slot="subtitle">
+            Explore property-backed investments that offer security, growth potential, and flexibility. Kiwi Home
+            Assist's Real Bonds provide a unique way to diversify your portfolio without the typical hassles of property
+            management. With low entry barriers, stable returns, and the ability to buy and sell as it suits you, Real
+            Bonds are a smart choice for both seasoned investors and those new to the property market.
+        </Fragment>
+    </Hero2>
+</Layout>

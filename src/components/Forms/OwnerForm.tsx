@@ -12,12 +12,10 @@ const formSchema = z.object({
     firstName: z.string(),
     lastName: z.string(),
     email: z.string().email(),
-    country: z.string(),
-    investmentSize: z.enum(["<10k", "<100k", ">100k"], {
-        errorMap: () => ({ message: "Select an investment size" }),
-    }),
-    isExperiencedInvestor: z.literal<boolean>(true, {
-        errorMap: () => ({ message: "Please confirm that you are an eligible investor" }),
+    city: z.string(),
+    suburb: z.string(),
+    fundingSize: z.enum(["<100k", "100-300k", ">300k"], {
+        errorMap: () => ({ message: "Please select the amount of funding you are looking to recieve" }),
     }),
     agreedToTerms: z.literal<boolean>(true, {
         errorMap: () => ({ message: "Please agree to the terms and conditions" }),
@@ -78,27 +76,44 @@ const InvestorForm = () => {
                         </FormItem>
                     )}
                 />
+                <div className="grid grid-cols-2 gap-y-2 gap-x-8">
+                    <p className="text-sm text-muted-foreground col-span-2">
+                        Location of the property you would like to equity release
+                    </p>
+                    <FormField
+                        control={form.control}
+                        name="city"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>City</FormLabel>
+                                <FormControl>
+                                    <Input placeholder="" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="suburb"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Suburb</FormLabel>
+                                <FormControl>
+                                    <Input placeholder="" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                </div>
+
                 <FormField
                     control={form.control}
-                    name="country"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Country of Residence</FormLabel>
-                            <FormControl>
-                                <Input placeholder="" {...field} />
-                            </FormControl>
-
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-
-                <FormField
-                    control={form.control}
-                    name="investmentSize"
+                    name="fundingSize"
                     render={({ field }) => (
                         <FormItem className="space-y-3">
-                            <FormLabel>Investment Size</FormLabel>
+                            <FormLabel>Equity Release Amount (50k minimum)</FormLabel>
                             <FormControl>
                                 <RadioGroup
                                     onValueChange={field.onChange}
@@ -107,56 +122,25 @@ const InvestorForm = () => {
                                 >
                                     <FormItem className="flex items-center space-x-3 space-y-0">
                                         <FormControl>
-                                            <RadioGroupItem value="<10k" />
-                                        </FormControl>
-                                        <FormLabel className="font-normal">{"< 10k"}</FormLabel>
-                                    </FormItem>
-                                    <FormItem className="flex items-center space-x-3 space-y-0">
-                                        <FormControl>
                                             <RadioGroupItem value="<100k" />
                                         </FormControl>
-                                        <FormLabel className="font-normal">{"< 100k"}</FormLabel>
+                                        <FormLabel className="font-normal">{"<100k"}</FormLabel>
                                     </FormItem>
                                     <FormItem className="flex items-center space-x-3 space-y-0">
                                         <FormControl>
-                                            <RadioGroupItem value=">100k" />
+                                            <RadioGroupItem value="100-300k" />
                                         </FormControl>
-                                        <FormLabel className="font-normal">{"> 100k"}</FormLabel>
+                                        <FormLabel className="font-normal">{"100-300k"}</FormLabel>
+                                    </FormItem>
+                                    <FormItem className="flex items-center space-x-3 space-y-0">
+                                        <FormControl>
+                                            <RadioGroupItem value=">300k" />
+                                        </FormControl>
+                                        <FormLabel className="font-normal">{">300k"}</FormLabel>
                                     </FormItem>
                                 </RadioGroup>
                             </FormControl>
                             <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="isExperiencedInvestor"
-                    render={({ field }) => (
-                        <FormItem className="flex items-start space-x-3 space-y-0 ">
-                            <FormControl>
-                                <Checkbox
-                                    checked={field.value}
-                                    onCheckedChange={(checked) => {
-                                        console.log("Checkbox value:", checked);
-                                        field.onChange(checked); // Update form state
-                                    }}
-                                />
-                            </FormControl>
-                            <div className="space-y-1 leading-none">
-                                <FormLabel>I am an eligible investor</FormLabel>
-                                <FormDescription>
-                                    By checking this box, you confirm that you qualify as an eligible investor based on{" "}
-                                    <a href="/eligibility" className="text-primary hover:underline">
-                                        these guidelines
-                                    </a>
-                                    . While formal certification is not required at this stage, you acknowledge that
-                                    such a certification may be needed later in accordance with legal requirements. This
-                                    step helps ensure compliance and allows us to tailor our communication to those who
-                                    meet eligibility criteria.
-                                </FormDescription>
-                                <FormMessage />
-                            </div>
                         </FormItem>
                     )}
                 />
@@ -192,7 +176,6 @@ const InvestorForm = () => {
                         </FormItem>
                     )}
                 />
-
                 <Button className="w-full text-2xl rounded-full font-semibold" size={"lg"} type="submit">
                     Submit
                 </Button>

@@ -1,5 +1,6 @@
 ---
-import Hero from "~/components/widgets/Hero/Hero3.astro";
+import OwnerForm from "~/components/Forms/OwnerForm";
+import Hero from "~/components/widgets/Hero/Hero4.astro";
 import Layout from "~/layouts/PageLayout.astro";
 
 const metadata = {
@@ -8,16 +9,26 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
-    <Hero
-        id="hero"
-        title="Register with <span class='text-accent highlight'>Kiwi Home Assist</span>"
-        tagline="Choose your path to financial security."
-    >
-        <Fragment slot="subtitle">
-            Ready to take control of your financial future? Whether you’re a homeowner looking to release equity or an
-            investor seeking property-backed returns, our registration process is simple and tailored to your needs.
-            Choose your path below and start your journey with Kiwi Home Assist today.
-        </Fragment>
-    </Hero>
-    <!-- <OwnerForm client:load /> -->
+    <div class="grid md:grid-flow-col gap-8 p-10">
+        <Hero
+            image={{
+                src: "/src/assets/icons/illustrations/signup2.svg",
+                alt: "Register Image",
+            }}
+            id="hero"
+            title="Start the Equity Release Process with <span class='text-accent highlight'>Kiwi Home Assist</span>"
+            tagline="Register to get a detailed PDF on our full Equity Release Process."
+        >
+            <Fragment slot="subtitle">
+                By registering your interest as a homeowner, we'll immediately email you with more details about how our
+                equity release process works and what to expect as part of the full Kiwi Home Assist Owner journey.<br
+                /><br />
+                We respect your inbox — this isn't a marketing campaign. You’ll only receive relevant updates on next steps,
+                key milestones, and when tailored funding options become available.<br /><br /> Right now, we're gathering
+                interest from homeowners ready to explore equity release options, ensuring you're first in line as funding
+                opens up.
+            </Fragment>
+        </Hero>
+        <OwnerForm client:load />
+    </div>
 </Layout>

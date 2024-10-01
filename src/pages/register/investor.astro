@@ -4,7 +4,7 @@ import Hero from "~/components/widgets/Hero/Hero4.astro";
 import Layout from "~/layouts/PageLayout.astro";
 
 const metadata = {
-    title: "Register as Owner",
+    title: "Register as Investor",
 };
 ---
 
@@ -16,12 +16,16 @@ const metadata = {
                 alt: "Register Image",
             }}
             id="hero"
-            title="Register as an Investor with <span class='text-accent highlight'>Kiwi Home Assist</span>"
-            tagline="Tagline."
+            title="Register Your Interest as a <span class='text-accent highlight'>Kiwi Home Assist</span> Investor"
+            tagline="Register to get a detailed PDF on our Real Bonds Model."
         >
             <Fragment slot="subtitle">
-                Register now to be the first to know when we launch! By registering your interest, you'll receive
-                exclusive updates, early access to investment opportunities, and insider insights into our strategies.
+                By expressing your genuine interest, you'll instantly receive additional details about how our Real
+                Bonds operate and our full Investor Process.<br /><br />We respect your inbox, this is not a marketing
+                campaign, you'll only receive relevant updates on next steps and key milestones as we move closer to
+                launch, and be notified when registration opens for our private exchange.<br /><br /> Currently, we are seeking
+                interest from <a href="/eligibility" class="text-primary hover:underline">eligible investors</a>, but we
+                plan to open up to everyone in the future.
             </Fragment>
         </Hero>
         <InvestorForm client:load />

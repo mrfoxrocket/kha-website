@@ -1,4 +1,5 @@
 ---
+import { Icon } from "astro-icon/components";
 import Image from "~/components/common/Image.astro";
 import Button from "~/components/ui/Button.astro";
 
@@ -13,6 +14,7 @@ const {
     actions = await Astro.slots.render("actions"),
     image = await Astro.slots.render("image"),
     sectionClass,
+    icon,
     id,
     bg = await Astro.slots.render("bg"),
 } = Astro.props;
@@ -82,6 +84,9 @@ const {
                         </div>
                     )
                 }
+                <div class="w-full flex justify-center">
+                    {icon && <Icon name={icon.src} size={icon.size || "auto"} class={"max-w-3xl "} />}
+                </div>
             </div>
         </div>
     </div>

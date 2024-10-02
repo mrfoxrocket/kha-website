@@ -1,5 +1,5 @@
-// import path from "path";
-// import { fileURLToPath } from "url";
+import path from "path";
+import { fileURLToPath } from "url";
 
 import { defineConfig } from "astro/config";
 
@@ -17,7 +17,7 @@ import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin, lazyImagesRehype
 
 import react from "@astrojs/react";
 
-// const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const hasExternalScripts = false;
 const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroIntegration)[] = []) =>
@@ -71,14 +71,12 @@ export default defineConfig({
         rehypePlugins: [responsiveTablesRehypePlugin, lazyImagesRehypePlugin],
     },
 
-    // vite: {
-    //     ssr: {
-    //         noExternal: ["react-hook-form"],
-    //     },
-    //     resolve: {
-    //         alias: {
-    //             "~": path.resolve(__dirname, "./src"),
-    //         },
-    //     },
-    // },
+    vite: {
+        resolve: {
+            alias: {
+                "~": path.resolve(__dirname, "./src"),
+                "@": path.resolve(__dirname, "./src"),
+            },
+        },
+    },
 });

@@ -1,6 +1,10 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { useForm, useFormState } from "react-hook-form";
 import { z } from "zod";
+import PocketBase, { ClientResponseError } from "pocketbase";
+
+const url = "https://kha.pockethost.io/";
+const pb = new PocketBase(url);
 
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
@@ -16,7 +20,8 @@ const formSchema = z.object({
     investmentSize: z.enum(["<10k", "<100k", ">100k"], {
         errorMap: () => ({ message: "Select an investment size" }),
     }),
-    isExperiencedInvestor: z.literal<boolean>(true, {
+    // eligibleInvestor: z.boolean().optional(),
+    eligibleInvestor: z.literal<boolean>(true, {
         errorMap: () => ({ message: "Please confirm that you are an eligible investor" }),
     }),
     agreedToTerms: z.literal<boolean>(true, {
@@ -28,10 +33,25 @@ const InvestorForm = () => {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
     });
+    const { isSubmitting, errors } = useFormState({ control: form.control });
 
-    function onSubmit(values: z.infer<typeof formSchema>) {
-        console.log(values);
-    }
+    const onSubmit = async (values: z.infer<typeof formSchema>) => {
+        try {
+            await pb.collection("users").create(values);
+            console.log("Success");
+        } catch (error) {
+            console.log(error);
+            if (error instanceof ClientResponseError && error.status === 400) {
+                console.error("Validation error: ", error.data);
+                form.setError("root.serverError", {
+                    type: "400",
+                    message: "Please ensure all required fields are filled in correctly",
+                });
+            } else {
+                console.error("Unexpected error: ", error);
+            }
+        }
+    };
 
     return (
         <Form {...form}>
@@ -131,7 +151,7 @@ const InvestorForm = () => {
                 />
                 <FormField
                     control={form.control}
-                    name="isExperiencedInvestor"
+                    name="eligibleInvestor"
                     render={({ field }) => (
                         <FormItem className="flex items-start space-x-3 space-y-0 ">
                             <FormControl>
@@ -192,8 +212,15 @@ const InvestorForm = () => {
                         </FormItem>
                     )}
                 />
-
-                <Button className="w-full text-2xl rounded-full font-semibold" size={"lg"} type="submit">
+                <p className="text-sm font-medium text-destructive min-h-[1.25rem]">
+                    {errors.root?.serverError.message ? errors.root?.serverError.message : ""}
+                </p>
+                <Button
+                    disabled={isSubmitting}
+                    className="w-full text-2xl rounded-full font-semibold"
+                    size={"lg"}
+                    type="submit"
+                >
                     Submit
                 </Button>
             </form>

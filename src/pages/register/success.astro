@@ -1,0 +1,23 @@
+---
+import Hero from "~/components/widgets/Hero/Hero2.astro";
+import Layout from "~/layouts/PageLayout.astro";
+
+const metadata = {
+    title: "Register as Owner",
+};
+---
+
+<Layout metadata={metadata}>
+    <Hero
+        image={{
+            src: "/src/assets/icons/illustrations/email.svg",
+            alt: "Register Image",
+        }}
+        id="hero"
+        title="Success"
+    >
+        <Fragment slot="subtitle">
+            An email has been sent to inbox with more details.<br /><br />
+        </Fragment>
+    </Hero>
+</Layout>

@@ -1,16 +1,17 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, useFormState } from "react-hook-form";
 import { z } from "zod";
-import PocketBase, { ClientResponseError } from "pocketbase";
-
-const url = "https://kha.pockethost.io/";
-const pb = new PocketBase(url);
-
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import { Checkbox } from "../ui/checkbox";
+import { Loader2 } from "lucide-react";
+
+import PocketBase, { ClientResponseError } from "pocketbase";
+
+const url = "https://kha.pockethost.io/";
+const pb = new PocketBase(url);
 
 const formSchema = z.object({
     firstName: z.string(),
@@ -33,12 +34,31 @@ const InvestorForm = () => {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
     });
-    const { isSubmitting, errors } = useFormState({ control: form.control });
+    const { isSubmitting, errors, isValid } = useFormState({ control: form.control });
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
-            await pb.collection("users").create(values);
+            await pb.collection("owners").create(values);
+            const emailResponse = await fetch("/api/email.json", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    to: ["lukka.popov@proton.me"],
+                    subject: "Test Email",
+                    html: "<p>it works!</p>",
+                }),
+            });
+
+            if (emailResponse.status === 500) {
+                throw new Error(emailResponse.statusText);
+            }
+
             console.log("Success");
+            window.location.href = "/register/success";
+
+            form.reset();
         } catch (error) {
             console.log(error);
             if (error instanceof ClientResponseError && error.status === 400) {
@@ -46,6 +66,16 @@ const InvestorForm = () => {
                 form.setError("root.serverError", {
                     type: "400",
                     message: "Please ensure all required fields are filled in correctly",
+                });
+            } else if (error instanceof Error && error.message.includes("Internal Server Error")) {
+                form.setError("root.serverError", {
+                    type: "500",
+                    message: "Internal Server Error. Please contact support.",
+                });
+            } else if (error instanceof Error && error.message.includes("There was an error sending the email")) {
+                form.setError("root.serverError", {
+                    type: "500",
+                    message: "There was an error sending the email. Please try again or contact support.",
                 });
             } else {
                 console.error("Unexpected error: ", error);
@@ -216,12 +246,12 @@ const InvestorForm = () => {
                     {errors.root?.serverError.message ? errors.root?.serverError.message : ""}
                 </p>
                 <Button
-                    disabled={isSubmitting}
+                    disabled={isSubmitting || !isValid}
                     className="w-full text-2xl rounded-full font-semibold"
                     size={"lg"}
                     type="submit"
                 >
-                    Submit
+                    {isSubmitting ? <Loader2 className="animate-spin" /> : "Submit"}
                 </Button>
             </form>
         </Form>

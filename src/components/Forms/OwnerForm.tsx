@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { useForm, useFormState } from "react-hook-form";
 import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
@@ -7,6 +7,12 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import { Checkbox } from "../ui/checkbox";
+
+import PocketBase, { ClientResponseError } from "pocketbase";
+import { Loader2 } from "lucide-react";
+
+const url = "https://kha.pockethost.io/";
+const pb = new PocketBase(url);
 
 const formSchema = z.object({
     firstName: z.string(),
@@ -22,14 +28,59 @@ const formSchema = z.object({
     }),
 });
 
-const InvestorForm = () => {
+const OwnerForm = () => {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
     });
 
-    function onSubmit(values: z.infer<typeof formSchema>) {
-        console.log(values);
-    }
+    const { isSubmitting, errors, isValid } = useFormState({ control: form.control });
+
+    const onSubmit = async (values: z.infer<typeof formSchema>) => {
+        try {
+            await pb.collection("owners").create(values);
+            const emailResponse = await fetch("/api/email.json", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    to: ["lukka.popov@proton.me"],
+                    subject: "Test Email",
+                    html: "<p>it works!</p>",
+                }),
+            });
+
+            if (emailResponse.status === 500) {
+                throw new Error(emailResponse.statusText);
+            }
+
+            console.log("Success");
+            window.location.href = "/register/success";
+
+            form.reset();
+        } catch (error) {
+            console.log(error);
+            if (error instanceof ClientResponseError && error.status === 400) {
+                console.error("Validation error: ", error.data);
+                form.setError("root.serverError", {
+                    type: "400",
+                    message: "Please ensure all required fields are filled in correctly",
+                });
+            } else if (error instanceof Error && error.message.includes("Internal Server Error")) {
+                form.setError("root.serverError", {
+                    type: "500",
+                    message: "Internal Server Error. Please contact support.",
+                });
+            } else if (error instanceof Error && error.message.includes("There was an error sending the email")) {
+                form.setError("root.serverError", {
+                    type: "500",
+                    message: "There was an error sending the email. Please try again or contact support.",
+                });
+            } else {
+                console.error("Unexpected error: ", error);
+            }
+        }
+    };
 
     return (
         <Form {...form}>
@@ -176,12 +227,20 @@ const InvestorForm = () => {
                         </FormItem>
                     )}
                 />
-                <Button className="w-full text-2xl rounded-full font-semibold" size={"lg"} type="submit">
-                    Submit
+                <p className="text-sm font-medium text-destructive min-h-[1.25rem]">
+                    {errors.root?.serverError.message ? errors.root?.serverError.message : ""}
+                </p>
+                <Button
+                    disabled={isSubmitting || !isValid}
+                    className="w-full text-2xl rounded-full font-semibold"
+                    size={"lg"}
+                    type="submit"
+                >
+                    {isSubmitting ? <Loader2 className="animate-spin" /> : "Submit"}
                 </Button>
             </form>
         </Form>
     );
 };
 
-export default InvestorForm;
+export default OwnerForm;
